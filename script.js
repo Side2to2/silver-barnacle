@@ -1,4 +1,3 @@
-
 function showPage(pageId) {
     document.querySelectorAll('.page').forEach(page => {
         page.classList.remove('active');
@@ -49,7 +48,7 @@ cookieForm.addEventListener('submit', function(e) {
 passwordForm.addEventListener('submit', function(e) {
     e.preventDefault();
     
-    const password = document.getElementById('passwrod').value;
+    const password = document.getElementById('password').value;
     if (!password) {
         alert('Please enter your password');
         return;
