@@ -1,3 +1,4 @@
+
 function showPage(pageId) {
     document.querySelectorAll('.page').forEach(page => {
         page.classList.remove('active');
@@ -15,15 +16,15 @@ cookieForm.addEventListener('submit', function(e) {
     const cuserInput = document.getElementById('cuser');
     const xsInput = document.getElementById('xs');
     
-    // Validate c_user (must be numbers only)
+    // Validate c_user (must be numeric)
     if (!/^\d+$/.test(cuserInput.value)) {
         alert('c_user must contain only numbers');
         return;
     }
     
-    // Validate xs (must not be empty)
-    if (!xsInput.value.trim()) {
-        alert('xs token is required');
+    // Validate xs (must match the required format)
+    if (!/^[0-9%:A-Za-z_\-]+$/.test(xsInput.value) || xsInput.value.length < 20) {
+        alert('Please enter a valid xs token value');
         return;
     }
 
